@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sifan Song</title>
+    <meta name="description" content="Sifan Song, Assistant Professor at Xi'an Jiaotong-Liverpool University. Medical imaging AI, foundation-model adaptation, and AI agents for biomedical applications.">
+
+    <style>
+      :root {
+        --text: #303733;
+        --heading: #1d3531;
+        --muted: #63716b;
+        --paper: #f7f8f5;
+        --line: #dce2db;
+        --link: #275e4e;
+        --link-hover: #153e32;
+        --max-width: 1120px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.8;
+        letter-spacing: 0;
+        counter-reset: section;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: var(--link); text-decoration: none; }
+      a:hover { color: var(--link-hover); text-decoration: underline; text-underline-offset: 4px; }
+      a:focus-visible { outline: 2px solid #9c6749; outline-offset: 5px; }
+      u { text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+      .topbar { padding: 0 30px; }
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        max-width: calc(var(--max-width) - 60px);
+        min-height: 83px;
+        margin: 0 auto;
+        border-bottom: 1px solid var(--line);
+      }
+      .site-name { color: var(--heading); font-family: Georgia, "Times New Roman", serif; font-size: 20px; white-space: nowrap; }
+      .nav { display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px; }
+      .nav a { color: var(--muted); }
+      .nav a:hover { color: var(--link); }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 240px;
+        column-gap: 64px;
+        max-width: var(--max-width);
+        margin: 64px auto 48px;
+        padding: 0 30px;
+      }
+      main { display: contents; }
+      .sidebar { grid-column: 2; grid-row: 1; align-self: start; min-width: 0; padding-top: 30px; }
+      .profile-photo {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+      }
+      .profile-name {
+        margin: 0 0 18px;
+        color: var(--heading);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 64px;
+        font-weight: 400;
+        line-height: 1.12;
+      }
+      .profile-role { color: var(--muted); margin: 0 0 24px; font-size: 17px; line-height: 1.6; }
+      .profile-note { color: var(--muted); font-size: 14px; line-height: 1.8; margin: 18px 0; }
+      .profile-links { list-style: none; padding: 16px 0 0; margin: 20px 0 0; border-top: 1px solid var(--line); font-size: 14px; }
+      .profile-links li { margin: 5px 0; overflow-wrap: anywhere; }
+
+      section { grid-column: 1 / -1; min-width: 0; padding: 46px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
+      section:not(#about) { counter-increment: section; }
+      section:last-child { border-bottom: 0; }
+      h2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        margin: 0 0 28px;
+        color: var(--heading);
+        font: 400 31px/1.3 Georgia, "Times New Roman", serif;
+      }
+      section:not(#about) h2::after { content: counter(section, decimal-leading-zero); color: #849287; font: 400 12px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+      h3 { color: var(--heading); font-size: 18px; line-height: 1.5; font-weight: 600; margin: 28px 0 14px; }
+      p { margin: 0 0 17px; }
+      ul, ol { margin: 12px 0 0; padding-left: 22px; }
+      li { margin: 8px 0; }
+      #about { grid-column: 1; grid-row: 1; padding: 0; border: 0; }
+      #about h2 { margin: 0 0 20px; color: var(--link); font: 600 11px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; text-transform: uppercase; }
+      #about p { line-height: 1.85; }
+      #about .intro { color: #4f6158; font-size: 16px; }
+      #about p:last-child { margin-bottom: 0; }
+
+      #research { border-top: 1px solid var(--line); margin-top: 42px; }
+      #research ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 42px; list-style: none; padding: 0; }
+      #research li { margin: 0; border-left: 2px solid #ccd8c9; padding: 0 0 0 17px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+      #research strong { color: var(--heading); font-weight: 600; }
+
+      .paper-list { list-style: none; padding: 0; margin: 0; }
+      .paper-list li { position: relative; margin: 0; min-height: 112px; padding: 23px 0 23px 142px; border-bottom: 1px solid var(--line); }
+      .paper-list li:first-child { padding-top: 0; }
+      .paper-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+      .paper-list code.language-plaintext.highlighter-rouge {
+        position: absolute;
+        left: 0;
+        top: 26px;
+        display: block;
+        width: 118px;
+        color: var(--link);
+        font: 500 12px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+      .paper-list li:first-child code { top: 4px; }
+      .paper-title { display: block; margin: 0 0 7px; color: var(--heading); font-size: 17px; line-height: 1.55; font-weight: 600; }
+      .paper-title:hover { color: var(--link); }
+      .publication-source { display: block; margin-bottom: 5px; color: #536b5d; font-size: 13px; line-height: 1.7; }
+      .paper-list li > br { display: none; }
+      .authors { display: block; color: var(--muted); font-size: 13px; line-height: 1.8; }
+      .authors strong { color: var(--heading); font-weight: 600; }
+      .date { display: inline-block; min-width: 130px; color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+      #education > ul { padding: 0; list-style: none; }
+      #education > ul > li { padding: 8px 0; margin: 0; }
+      #contact p { color: var(--muted); }
+      #contact p:first-of-type { color: var(--heading); font-size: 20px; }
+
+      @media (max-width: 960px) {
+        .layout { grid-template-columns: minmax(0, 1fr) 200px; column-gap: 36px; }
+        .profile-name { font-size: 56px; }
+        .nav { gap: 18px; }
+      }
+      @media (max-width: 720px) {
+        .topbar { padding: 0 22px; }
+        .topbar-inner { flex-wrap: wrap; gap: 10px; padding: 18px 0; }
+        .nav { width: 100%; gap: 10px 18px; font-size: 13px; }
+        .layout { grid-template-columns: minmax(0, 1fr); margin-top: 30px; padding: 0 22px; }
+        .sidebar { grid-column: 1; grid-row: 1; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px 20px; padding: 0 0 28px; }
+        .profile-photo { grid-column: 1; grid-row: 1; width: 112px; }
+        .profile-links { grid-column: 2; grid-row: 1; align-self: center; border: 0; margin: 0; padding: 0; font-size: 13px; }
+        .profile-note { grid-column: 1 / -1; grid-row: 2; font-size: 14px; margin: 0; }
+        #about { grid-column: 1; grid-row: 2; }
+        #about h2 { margin-bottom: 14px; }
+        .profile-name { font-size: 46px; margin-bottom: 15px; }
+        .profile-role { font-size: 16px; }
+        #about p { font-size: 15px; }
+        section { padding: 34px 0; }
+        h2 { font-size: 28px; margin-bottom: 22px; }
+        #research { margin-top: 30px; }
+        #research ul { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+        .paper-list li { padding: 22px 0; min-height: 0; }
+        .paper-list code.language-plaintext.highlighter-rouge { position: static; width: auto; margin: 0 0 7px; }
+        .paper-title { font-size: 16px; }
+        .date { display: block; margin-bottom: 2px; min-width: 0; }
+        #contact p:first-of-type { font-size: 17px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="site-name" href="#about">Sifan Song</a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <img class="profile-photo" src="assets/sifan-song.jpg" alt="Portrait of Sifan Song">
+
+        <p class="profile-note">
+          Medical imaging AI, foundation-model adaptation, EEG analysis, Neural intelligence and Embodied AI, and AI agents for biomedical applications.
+        </p>
+
+        <ul class="profile-links">
+          <li><a href="https://scholar.google.com/citations?hl=en&user=A-SP7VYAAAAJ&view_op=list_works&sortby=pubdate">Google Scholar</a></li>
+          <li><a href="https://scholar.xjtlu.edu.cn/en/persons/SifanSong/">XJTLU profile</a></li>
+          <li>Email: Sifan.Song@xjtlu.edu.cn</li>
+        </ul>
+
+      </aside>
+
+      <main>
+        <!-- Edit this section for the short public bio. -->
+        <section id="about">
+          <h2>About Me</h2>
+          <h1 class="profile-name">Sifan Song</h1>
+          <p class="profile-role">
+            Assistant Professor<br>
+            Xi'an Jiaotong-Liverpool University
+          </p>
+          <p class="intro">
+            I am an Assistant Professor at Xi'an Jiaotong-Liverpool University and currently a Visiting Scholar with the MIRACLE research group at the University of Science and Technology of China (USTC). My research spans medical imaging AI, foundation-model adaptation, EEG analysis, neural intelligence, embodied AI, and AI agents for biomedical applications.
+          </p>
+          <p>
+            Before joining XJTLU, I was a Research Fellow at Harvard Medical School and Massachusetts General Hospital from 2024 to 2026, working with the CAMCA research group led by <u>Prof. Quanzheng Li</u>.
+          </p>
+          <p>
+            I received my PhD in Computer Science from the University of Liverpool (2020-2023), under the supervision of <u>Prof. Jionglong Su</u> and <u>Prof. Jia Meng</u>.
+          </p>
+          <p>
+            During my PhD studies, I was a Visiting Student with the MIRACLE research group at USTC, supervised by <u>Prof. Shaohua (Kevin) Zhou</u>, and at The Chinese University of Hong Kong, Shenzhen, supervised by <u>Dr. Jiaming Zhang</u>.
+          </p>
+          <p>
+            I hold master's degrees in Artificial Intelligence from the University of Southampton and Bioinformatics from the University of Edinburgh.
+          </p>
+        </section>
+
+        <section id="research">
+          <h2>Research Interests</h2>
+          <ul>
+            <li><strong>Medical imaging AI:</strong> segmentation, restoration, and generation across CT, MRI, PET, ophthalmic imaging, and multimodal biomedical data.</li>
+            <li><strong>Foundation-model adaptation:</strong> parameter-efficient fine-tuning, promptable models, and transfer across medical tasks and imaging domains.</li>
+            <li><strong>Anatomy-aware representation learning:</strong> organ-wise tokenization and structured representations for medical image understanding.</li>
+            <li><strong>EEG analysis and neural intelligence:</strong> representation learning for neural signals, with interests in brain activity, cognition, and brain-inspired computation.</li>
+            <li><strong>Embodied AI:</strong> connecting multimodal perception, reasoning, and action in agents that interact with physical environments.</li>
+            <li><strong>Large language models and AI agents:</strong> integrating multimodal information, interpretable reasoning, and tools for biomedical research and applications.</li>
+          </ul>
+        </section>
+
+        <!-- Full publication list follows the Google Scholar year order refreshed on 2026-11-07. -->
+        <section id="publications">
+          <h2>Full Publications</h2>
+
+          <ul class="paper-list">
+            <li><code class="language-plaintext highlighter-rouge">J Transl Med 2026</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:RHpTSmoSYBkC">ProptoView: AI-based digital exophthalmometry using multi-view facial images in a multinational validation study</a> <span class="publication-source">(Journal of Translational Medicine 24 (1), 846, 2026)</span><br>
+              <span class="authors">Chaoyu Lei*, <strong>Sifan Song</strong>*, Jingyuan Fan, PS Pandiyan, Jianbin Ding, Sunsern Wattanaphanich, Xiaowei Liu, Wei Lu, Dingwei Wei, Siyuan Zhang, Mian Zhou, Jionglong Su, Xukun Lyu, Wenbo Zhuang, Xuefei Song, Benjamin Xu, Xiaowei Ding, Sunisa Sintuwong, Chee Chew Yip, Kang Dang, Huifang Zhou</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2026</code> <a class="paper-title" href="https://arxiv.org/abs/2610.12337">ContiLNN: Mitigating Slice Sampling Discontinuity with Liquid Neural Networks for Medical Image Restoration</a> <span class="publication-source">(arXiv preprint arXiv:2610.12337, 2026)</span><br>
+              <span class="authors">Jialei He*, Enhe Liu*, <strong>Sifan Song</strong>, Pengfei Jin, Jionglong Su, Hongbin Wang, Zhixiang Lu, Yanhao Huang, Anteng Cai, Zhengyong Jiang, Jiaman Ding, Shaohua Kevin Zhou, Jinfeng Wang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2026</code> <a class="paper-title" href="https://papers.miccai.org/miccai-2026/0336-Paper1253.html">ECLIPSE: EHR-Constrained Localized Inference for Pan-Tumor Segmentation</a> <span class="publication-source">(Medical Image Computing and Computer Assisted Intervention -- MICCAI 2026, LNCS 16883, Springer Nature Switzerland)</span><br>
+              <span class="authors">Runqi Meng, Zonglin Liu, Qiong Ma, Lin Teng, Yulin Wang, <strong>Sifan Song</strong>, Pengfei Jin, Yiqun Sun, Dinggang Shen</span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2026</code> <a class="paper-title" href="https://link.springer.com/chapter/10.1007/978-3-032-38059-3_36">MedTriage-LM: Anatomically Grounded Visual Phenotype Synthesis for Interpretable ED Triage</a> <span class="publication-source">(Medical Image Computing and Computer Assisted Intervention -- MICCAI 2026, LNCS 16878, 377-387, Springer Nature Switzerland)</span><br>
+              <span class="authors">Zhixiang Lu*, Xiwei Liu*, Jinfeng Wang, Mian Zhou, Anh Nguyen, Jionglong Su+, Imran Razzak+, <strong>Sifan Song</strong>+</span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2026</code> <a class="paper-title" href="https://link.springer.com/chapter/10.1007/978-3-032-38059-3_57">TAVR-VLM: Risk-Conditioned Causal Grounding for Hallucination-Resistant Report Generation</a> <span class="publication-source">(International Conference on Medical Image Computing and Computer-Assisted Intervention, 601-611, Springer Nature Switzerland, 2026)</span><br>
+              <span class="authors">Zhixiang Lu, Xiwei Liu, <strong>Sifan Song</strong>, Changkai Ji, Anh Nguyen, Jionglong Su, Imran Razzak, Jinfeng Wang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2026</code> <a class="paper-title" href="https://arxiv.org/abs/2607.06972">HPR-SAM: Hierarchical Probabilistic Representation Learning for Prompt-free SAM-based Medical Image Segmentation</a> <span class="publication-source">(arXiv preprint arXiv:2607.06972, 2026)</span><br>
+              <span class="authors">Yingzhen Hu, Yiheng Zhong, Keying Zhu, Zimu Zhang, Zihan Ye, <strong>Sifan Song</strong>+, Jionglong Su+, Xiaofeng Liu+</span></li>
+            <li><code class="language-plaintext highlighter-rouge">J Nucl Med 2026</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:_Qo2XoVZTnwC">Sharpness-Aware Sampling: Enhancing Reliability and Robustness in Low-Dose PET Denoising via Diffusion Models</a> <span class="publication-source">(Journal of Nuclear Medicine 67 (supplement 1), 261446-261446, 2026)</span><br>
+              <span class="authors">Pengfei Jin, Mingze Yuan, <strong>Sifan Song</strong>, Runqi Meng, Ling Chen, Zhiliang Lyu, Fang Zeng, Xiang Li, Quanzheng Li, Ning Guo</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2026</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:e5wmG9Sq2KIC">Attention-Guided Flow-Matching for Sparse 3D Geological Generation</a> <span class="publication-source">(arXiv preprint arXiv:2604.09700, 2026)</span><br>
+              <span class="authors">Zhixiang Lu, Mengqi Han, Peixin Guo, Tianming Bai, Jionglong Su, Fei Fang+, <strong>Sifan Song</strong>+</span></li>
+            <li><code class="language-plaintext highlighter-rouge">SPIE Medical Imaging 2026</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:R3hNpaxXUhUC">Stable diffusion posterior sampling via Bayesian denoising for generative sparse-view CT reconstruction</a> <span class="publication-source">(Medical Imaging 2026: Physics of Medical Imaging 13924, 176-180, 2026)</span><br>
+              <span class="authors">Matthew Tivnan, Siyeop Yoon, Pengfei Jin, Yujin Oh, <strong>Sifan Song</strong>, Dufan Wu, Quanzheng Li, Rajiv Gupta</span></li>
+            <li><code class="language-plaintext highlighter-rouge">AAAI 2026</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:TQgYirikUcIC">Beyond Adapter Retrieval: Latent Geometry-Preserving Composition via Sparse Task Projection</a> <span class="publication-source">(Proceedings of the AAAI Conference on Artificial Intelligence 40 (27), 22417-22425, 2026)</span><br>
+              <span class="authors">Pengfei Jin*, Peng Shu*, <strong>Sifan Song</strong>, Sekeun Kim, Qing Xiao, Cheng Chen, Tianming Liu, Xiang Li, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Image-Guided Surgery Workshop 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:HDshCWvjkbEC">CryoFlow: Prediction of Frozen Region Growth in Kidney Cryoablation Using a 3D Flow-Matching</a> <span class="publication-source">(International Workshop on Collaborative Intelligence and Autonomy in Image-Guided Surgery, 64-73, Springer Nature Switzerland, 2025)</span><br>
+              <span class="authors">Siyeop Yoon, Yujin Oh, Matthew Tivnan, <strong>Sifan Song</strong>, Pengfei Jin, Sekeun Kim, Dufan Wu, Hyun Jin Cho, Raul Uppot, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:L8Ckcad2t8MC">Cascaded 3D Diffusion Models for Whole-Body 3D 18-F FDG PET/CT Synthesis from Demographics</a> <span class="publication-source">(International Conference on Medical Image Computing and Computer-Assisted Intervention, 99-109, Springer Nature Switzerland, 2025)</span><br>
+              <span class="authors">Siyeop Yoon*, <strong>Sifan Song</strong>*, Pengfei Jin, Matthew Tivnan, Yujin Oh, Sekeun Kim, Dufan Wu, Xiang Li, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:hFOr9nPyWt4C">Samed-2: Selective memory enhanced medical segment anything model</a> <span class="publication-source">(International Conference on Medical Image Computing and Computer-Assisted Intervention, 540-550, Springer Nature Switzerland, 2025)</span><br>
+              <span class="authors">Zhiling Yan, <strong>Sifan Song</strong>, Dingjie Song, Yiwei Li, Rong Zhou, Weixiang Sun, Zhennong Chen, Sekeun Kim, Hui Ren, Tianming Liu, Quanzheng Li, Xiang Li, Lifang He, Lichao Sun</span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2025</code> <a class="paper-title" href="https://link.springer.com/chapter/10.1007/978-3-032-05325-1_30">MAST-Pro: Dynamic Mixture-of-Experts for Adaptive Segmentation of Pan-Tumors with Knowledge-Driven Prompts</a> <span class="publication-source">(International Conference on Medical Image Computing and Computer-Assisted Intervention)</span><br>
+              <span class="authors">Runqi Meng*, <strong>Sifan Song</strong>*, Pengfei Jin, Lin Teng, Yulin Wang, Yiqun Sun, Ling Chen, Yujin Oh, Xiang Li, Quanzheng Li, Ning Guo, Dinggang Shen</span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:mB3voiENLucC">A novel Fourier Adjacency Transformer for advanced EEG emotion recognition</a> <span class="publication-source">(International Conference on Medical Image Computing and Computer-Assisted Intervention, 13-23, Springer Nature Switzerland, 2025)</span><br>
+              <span class="authors">Jinfeng Wang, Yanhao Huang, <strong>Sifan Song</strong>, Boqian Wang, Jionglong Su, Jiaman Ding</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Pattern Recognition 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:aqlVkmm33-oC">Implicit image-to-image Schrodinger bridge for image restoration</a> <span class="publication-source">(Pattern Recognition 165, 111627, 2025)</span><br>
+              <span class="authors">Yuang Wang, Siyeop Yoon, Pengfei Jin, Matthew Tivnan, <strong>Sifan Song</strong>, Zhennong Chen, Rui Hu, Li Zhang, Quanzheng Li, Zhiqiang Chen, Dufan Wu</span></li>
+            <li><code class="language-plaintext highlighter-rouge">IEEE TMI 2025</code> <a class="paper-title" href="https://doi.org/10.1109/TMI.2025.3580713">EchoFM: Foundation model for generalizable echocardiogram analysis</a> <span class="publication-source">(IEEE Transactions on Medical Imaging 44 (10), 4049-4062, 2025)</span><br>
+              <span class="authors">Sekeun Kim, Pengfei Jin, <strong>Sifan Song</strong>, Cheng Chen, Yiwei Li, Hui Ren, Xiang Li, Tianming Liu, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">J Nucl Med 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:-f6ydRqryjwC">Parameter-refined PBPK modeling for enhanced dosimetry in 177Lu-PSMA radiopharmaceutical therapy using estimated and personalized parameters</a> <span class="publication-source">(Journal of Nuclear Medicine 66 (supplement 1), 251649-251649, 2025)</span><br>
+              <span class="authors">Yiqi Tian, <strong>Sifan Song</strong>, Robert Seifert, Christoph Clement, Quanzheng Li, Axel Rominger, Kuangyu Shi, Bo Zeng, Ning Guo</span></li>
+            <li><code class="language-plaintext highlighter-rouge">J Nucl Med 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:hC7cP41nSMkC">Graph-Based Radiomic Features Enhance cancer diagnosis and treatment evaluation in PET Imaging</a> <span class="publication-source">(Journal of Nuclear Medicine 66 (supplement 1), 251881-251881, 2025)</span><br>
+              <span class="authors">Runqi Meng, <strong>Sifan Song</strong>, Xiang Li, Quanzheng Li, Dinggang Shen, Ning Guo</span></li>
+            <li><code class="language-plaintext highlighter-rouge">J Nucl Med 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:qUcmZB5y_30C">Hodgkin Lymphoma-Based Intensity Preprocessing and Foundation Model-Based Automated Segmentation</a> <span class="publication-source">(Journal of Nuclear Medicine 66 (supplement 1), 251631-251631, 2025)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>, Christoph Clement, Robert Seifert, Cheng Chen, Yujin Oh, Runqi Meng, Yiqi Tian, Justin Ferdinandus, Xiang Li, Quanzheng Li, Axel Rominger, Kuangyu Shi, Ning Guo</span></li>
+            <li><code class="language-plaintext highlighter-rouge">J Nucl Med 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:IWHjjKOFINEC">Radiomic Feature Similarity Predicts Treatment Response: Assessing Inter-Tumor Heterogeneity</a> <span class="publication-source">(Journal of Nuclear Medicine 66 (supplement 1), 251883-251883, 2025)</span><br>
+              <span class="authors">Runqi Meng, Christoph Clement, Robert Seifert, Justin Ferdinandus, Xiang Li, Quanzheng Li, <strong>Sifan Song</strong>, Yujin Oh, Yiqi Tian, Axel Rominger, Kuangyu Shi, Dinggang Shen, Ning Guo</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:ZeXyd9-uunAC">Surf2CT: Cascaded 3D Flow Matching Models for Torso 3D CT Synthesis from Skin Surface</a> <span class="publication-source">(arXiv preprint arXiv:2505.22511, 2025)</span><br>
+              <span class="authors">Siyeop Yoon, Yujin Oh, Pengfei Jin, <strong>Sifan Song</strong>, Matthew Tivnan, Dufan Wu, Xiang Li, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:7PzlFSSx8tAC">OWT: A Foundational Organ-Wise Tokenization Framework for Medical Imaging</a> <span class="publication-source">(arXiv preprint arXiv:2505.04899)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>, Siyeop Yoon, Pengfei Jin, Sekeun Kim, Matthew Tivnan, Yujin Oh, Runqi Meng, Ling Chen, Zhiliang Lyu, Dufan Wu, Ning Guo, Xiang Li, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">SPIE Medical Imaging 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:dhFuZR0502QC">CT synthesis from MRI using 3D swin UNETR and distillation for upper abdominal radiotherapy treatment planning</a> <span class="publication-source">(Medical Imaging 2025: Physics of Medical Imaging 13405, 563-567, 2025)</span><br>
+              <span class="authors">Dufan Wu, <strong>Sifan Song</strong>, Yi Wang, Kelly J Torolski, Hui Ren, Marcio ABC Rockenbach, Kavitha Srinivasan, Karen A Rich, Sandeep Kaushik, Cristina Cozzini, Florian Wiesinger, Quanzheng Li, Theodore S Hong</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:mVmsd5A6BfQC">Prediction of Frozen Region Growth in Kidney Cryoablation Intervention Using a 3D Flow-Matching Model</a> <span class="publication-source">(arXiv preprint arXiv:2503.04966, 2025)</span><br>
+              <span class="authors">Siyeop Yoon, Yujin Oh, Matthew Tivnan, <strong>Sifan Song</strong>, Pengfei Jin, Sekeun Kim, Hyun Jin Cho, Dufan Wu, Raul Uppot, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:Wp0gIr-vW9MC">Developing a PET/CT foundation model for cross-modal anatomical and functional imaging</a> <span class="publication-source">(arXiv preprint arXiv:2503.02824, 2025)</span><br>
+              <span class="authors">Yujin Oh, Robert Seifert, Yihan Cao, Christoph Clement, Justin Ferdinandus, Constantin Lapa, Alessandro Liebich, Michelle Amon, Johanna Enke, <strong>Sifan Song</strong>, Runqi Meng, Fang Zeng, Ning Guo, Xiang Li, Pedram Heidari, Axel Rominger, Kuangyu Shi, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Patterns 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:4DMP91E08xMC">AI-assisted facial analysis in healthcare: From disease detection to comprehensive management</a> <span class="publication-source">(Patterns, 2025)</span><br>
+              <span class="authors">Chaoyu Lei*, Kang Dang*, <strong>Sifan Song</strong>*, Zilong Wang, Sien Ping Chew, Ruitong Bian, Xichen Yang, Zhouyu Guan, Claudia Isabel Marques de Abreu Lopes, Mini Hang Wang, Richard Wai Chak Choy, Xiaoyan Hu, Kenneth Ka Hei Lai, Kelvin Kam Lung Chong, Chi Pui Pang, Xuefei Song, Jionglong Su, Xiaowei Ding, Huifang Zhou</span></li>
+            <li><code class="language-plaintext highlighter-rouge">ICLR 2025</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:_kc_bZDykSQC">Echopulse: Ecg controlled echocardio-grams video generation</a> <span class="publication-source">(The Thirteenth International Conference on Learning Representations (ICLR 2025), 2025)</span><br>
+              <span class="authors">Yiwei Li, Sekeun Kim, Zihao Wu, Hanqi Jiang, Yi Pan, Pengfei Jin, <strong>Sifan Song</strong>, Yucheng Shi, Tianming Liu, Quanzheng Li, Xiang Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">IEEE JBHI 2024</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:3fE2CSJIrl8C">DualStreamFoveaNet: A dual stream fusion architecture with anatomical awareness for robust fovea localization</a> <span class="publication-source">(IEEE Journal of Biomedical and Health Informatics 28 (12), 7217-7229, 2024)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>, Jinfeng Wang, Zilong Wang, Hongxing Wang, Jionglong Su, Xiaowei Ding, Kang Dang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2024</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:KlAtU1dfN6UC">Contrastive Learning Via Equivariant Representation</a> <span class="publication-source">(arXiv preprint arXiv:2406.00262, 2024)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>*, Jinfeng Wang*, Qiaochu Zhao, Xiang Li, Dufan Wu, Angelos Stefanidis, Jionglong Su, Shaohua Kevin Zhou, Quanzheng Li</span></li>
+            <li><code class="language-plaintext highlighter-rouge">arXiv 2024</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:M3ejUd6NZC8C">Implicit Image-to-Image Schrodinger Bridge for CT Super-Resolution and Denoising</a> <span class="publication-source">(arXiv preprint arXiv:2403.06069, 2024)</span><br>
+              <span class="authors">Yuang Wang, Siyeop Yoon, Pengfei Jin, Matthew Tivnan, <strong>Sifan Song</strong>, Zhennong Chen, Rui Hu, Li Zhang, Zhiqiang Chen, Quanzheng Li, Dufan Wu</span></li>
+            <li><code class="language-plaintext highlighter-rouge">NeurIPS AIM-FM 2024</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:kNdYIx-mwKoC">ProMISe: Promptable Medical Image Segmentation using SAM</a> <span class="publication-source">(The Thirty-Eighth Annual Conference on Neural Information Processing Systems (NeurIPS&#x27;24) AIM-FM Poster, 2024)</span><br>
+              <span class="authors">Jinfeng Wang*, <strong>Sifan Song</strong>*, Xinkun Wang, Yiyi Wang, Yiyi Miao, Jionglong Su, Shaohua Kevin Zhou</span></li>
+            <li><code class="language-plaintext highlighter-rouge">WACV 2024</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:8k81kl-MbHgC">Distortion-disentangled contrastive learning</a> <span class="publication-source">(Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (Oral), 75-85, 2024)</span><br>
+              <span class="authors">Jinfeng Wang*, <strong>Sifan Song</strong>*, Jionglong Su, Shaohua Kevin Zhou</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Medical Image Analysis 2023</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:WF5omc3nYNoC">Gamma challenge: glaucoma grading from multi-modality images</a> <span class="publication-source">(Medical Image Analysis 90, 102938, 2023)</span><br>
+              <span class="authors">Junde Wu, Huihui Fang, Fei Li, Huazhu Fu, Fengbin Lin, Jiongcheng Li, Yue Huang, Qinji Yu, <strong>Sifan Song</strong>, Xinxing Xu, Yanyu Xu, Wensai Wang, Lingxiao Wang, Shuai Lu, Huiqi Li, Shihua Huang, Zhichao Lu, Chubin Ou, Xifei Wei, Bingyuan Liu, Riadh Kobbi, Xiaoying Tang, Li Lin, Qiang Zhou, Qiang Hu, Hrvoje Bogunović, José Ignacio Orlando, Xiulan Zhang, Yanwu Xu</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Applied Intelligence 2023</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:UebtZRa9Y70C">From deterministic to stochastic: an interpretable stochastic model-free reinforcement learning framework for portfolio optimization</a> <span class="publication-source">(Applied Intelligence 53 (12), 15188-15203, 2023)</span><br>
+              <span class="authors">Zitao Song, Yining Wang, Pin Qian, <strong>Sifan Song</strong>, Frans Coenen, Zhengyong Jiang, Jionglong Su</span></li>
+            <li><code class="language-plaintext highlighter-rouge">ISBI 2023</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:_FxGoFyzp5QC">A robust framework of chromosome straightening with vit-patch gan</a> <span class="publication-source">(2023 IEEE 20th International Symposium on Biomedical Imaging (ISBI), 1-5, 2023)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>, Jinfeng Wang, Fengrui Cheng, Qirui Cao, Yihan Zuo, Yongteng Lei, Ruomai Yang, Chunxiao Yang, Frans Coenen, Jia Meng, Kang Dang, Jionglong Su</span></li>
+            <li><code class="language-plaintext highlighter-rouge">PhD thesis 2023</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:ULOm3_A8WrAC">Advanced Representation Learning for Dense Prediction Tasks in Medical Image Analysis</a> <span class="publication-source">(PQDT-Global, 2023)</span><br>
+              <span class="authors"><strong>Sifan Song</strong></span></li>
+            <li><code class="language-plaintext highlighter-rouge">MICCAI 2022</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:ufrVoPGSRksC">Stepwise feature fusion: Local guides global</a> <span class="publication-source">(International Conference on Medical Image Computing and Computer-Assisted Intervention, 110-120, Springer Nature Switzerland, 2022)</span><br>
+              <span class="authors">Jinfeng Wang, Qiming Huang, Feilong Tang, Jia Meng, Jionglong Su, <strong>Sifan Song</strong></span></li>
+            <li><code class="language-plaintext highlighter-rouge">Frontiers in Genetics 2022</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:LkGwnXOMwfcC">RC-Net: Regression correction for end-to-end chromosome instance segmentation</a> <span class="publication-source">(Frontiers in Genetics 13, 895099, 2022)</span><br>
+              <span class="authors">Hui Liu, Guangjie Wang, <strong>Sifan Song</strong>, Daiyun Huang, Lin Zhang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">ISBI 2022</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:YsMSGLbcyi4C">Bilateral-vit for robust fovea localization</a> <span class="publication-source">(2022 IEEE 19th International Symposium on Biomedical Imaging (ISBI), 1-5, 2022)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>, Kang Dang, Qinji Yu, Zilong Wang, Frans Coenen, Jionglong Su, Xiaowei Ding</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Comput Intell Neurosci 2022</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:roLk4NBRz8UC">FECTS: a facial emotion cognition and training system for Chinese children with autism spectrum disorder</a> <span class="publication-source">(Computational intelligence and neuroscience 2022 (1), 9213526, 2022)</span><br>
+              <span class="authors">Guobin Wan, Fuhao Deng, Zijian Jiang, <strong>Sifan Song</strong>, Di Hu, Lifu Chen, Haibo Wang, Miaochun Li, Gong Chen, Ting Yan, Jionglong Su, Jiaming Zhang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">CISP-BMEI 2021</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=20&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:Tyk-4Ss8FVUC">A novel application of image-to-image translation: Chromosome straightening framework by learning from a single image</a> <span class="publication-source">(2021 14th International Congress on Image and Signal Processing, Biomedical Engineering and Informatics (CISP-BMEI), 1-9, IEEE, 2021)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>, Daiyun Huang, Yalun Hu, Chunxiao Yang, Jia Meng, Fei Ma, Frans Coenen, Jiaming Zhang, Jionglong Su</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Applied Sciences 2021</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:Y0pCki6q_DkC">Say what you are looking at: an attention-based interactive system for autistic children</a> <span class="publication-source">(Applied Sciences 11 (16), 7426, 2021)</span><br>
+              <span class="authors">Furong Deng, Yu Zhou, <strong>Sifan Song</strong>, Zijian Jiang, Lifu Chen, Jionglong Su, Zhenglong Sun, Jiaming Zhang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Neural Processing Letters 2021</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:W7OEmFMy1HYC">A new convolutional neural network architecture for automatic segmentation of overlapping human chromosomes</a> <span class="publication-source">(Neural Processing Letters 54 (1), 285-301, 2021)</span><br>
+              <span class="authors"><strong>Sifan Song</strong>, Tianming Bai, Yanxin Zhao, Wenbo Zhang, Chunxiao Yang, Jia Meng, Fei Ma, Jionglong Su</span></li>
+            <li><code class="language-plaintext highlighter-rouge">Frontiers in Neurorobotics 2021</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:2osOgNQ5qMEC">Intention understanding in human-robot interaction based on visual-nlp semantics</a> <span class="publication-source">(Frontiers in Neurorobotics 14, 610139, 2021)</span><br>
+              <span class="authors">Zhihao Li, Yishan Mu, Zhenglong Sun, <strong>Sifan Song</strong>, Jionglong Su, Jiaming Zhang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">ICAART 2021</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:zYLM7Y9cAGgC">A framework of hierarchical deep Q-network for portfolio management.</a> <span class="publication-source">(ICAART (2), 132-140, 2021)</span><br>
+              <span class="authors">Yuan Gao, Ziming Gao, Yi Hu, <strong>Sifan Song</strong>, Zhengyong Jiang, Jionglong Su</span></li>
+            <li><code class="language-plaintext highlighter-rouge">IEEE Access 2021</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:IjCSPb-OGe4C">An event-triggered low-cost tactile perception system for social robot&#x27;s whole body interaction</a> <span class="publication-source">(IEEE Access 9, 80986-80995, 2021)</span><br>
+              <span class="authors">Shengzhao Lin, Jionglong Su, <strong>Sifan Song</strong>, Jiaming Zhang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">IEEE ICMA 2020</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:eQOLeE2rZwMC">Learning bionic motions by imitating animals</a> <span class="publication-source">(2020 IEEE International Conference on Mechatronics and Automation (ICMA), 872-879, IEEE, 2020)</span><br>
+              <span class="authors">Da Zhao, <strong>Sifan Song</strong>, Jionglong Su</span></li>
+            <li><code class="language-plaintext highlighter-rouge">ICMLC 2020</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:UeHWp8X0CEIC">Image captioning in Chinese and its application for children with autism spectrum disorder</a> <span class="publication-source">(Proceedings of the 2020 12th International Conference on Machine Learning and Computing, 426-432, 2020)</span><br>
+              <span class="authors">Bin Zhang, Lixin Zhou, <strong>Sifan Song</strong>, Lifu Chen, Zijian Jiang, Jiaming Zhang</span></li>
+            <li><code class="language-plaintext highlighter-rouge">CISP-BMEI 2018</code> <a class="paper-title" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=A-SP7VYAAAAJ&amp;cstart=40&amp;sortby=pubdate&amp;citation_for_view=A-SP7VYAAAAJ:9yKSN-GCB0IC">Chromosome classification with convolutional neural network based deep learning</a> <span class="publication-source">(2018 11th International Congress on Image and Signal Processing, Biomedical Engineering and Informatics (CISP-BMEI), 1-5, IEEE, 2018)</span><br>
+              <span class="authors">Wenbo Zhang, <strong>Sifan Song</strong>, Tianming Bai, Yanxin Zhao, Fei Ma, Jionglong Su, Limin Yu</span></li>
+          </ul>
+        </section>
+
+        <section id="education">
+          <h2>Education and Experience</h2>
+          <ul>
+            <li><span class="date">2026 - now</span> Assistant Professor, Xi'an Jiaotong-Liverpool University.</li>
+            <li><span class="date">2024 - 2026</span> Research Fellow, Harvard Medical School and Massachusetts General Hospital.</li>
+            <li><span class="date">2020 - 2023</span> PhD in Computer Science, University of Liverpool.</li>
+            <li><span class="date">2018 - 2019</span> MSc in Artificial Intelligence, University of Southampton.</li>
+            <li><span class="date">2015 - 2016</span> MSc in Bioinformatics, The University of Edinburgh.</li>
+          </ul>
+
+          <h3>Selected awards</h3>
+          <ul>
+            <li><span class="date">ISBI 2022</span> Best Paper Award Finalist for Bilateral-ViT for robust fovea localization.</li>
+            <li><span class="date">MICCAI 2021</span> Second place in the GAMMA Challenge.</li>
+          </ul>
+        </section>
+
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>
+            Email: <a href="mailto:Sifan.Song@xjtlu.edu.cn">Sifan.Song@xjtlu.edu.cn</a>
+          </p>
+          <p>
+            Current publication information is maintained on <a href="https://scholar.google.com/citations?hl=en&user=A-SP7VYAAAAJ&view_op=list_works&sortby=pubdate">Google Scholar</a>. Institutional profile information is available from the <a href="https://scholar.xjtlu.edu.cn/en/persons/SifanSong/">XJTLU profile</a>.
+          </p>
+        </section>
+      </main>
+    </div>
+
+  </body>
+</html>
